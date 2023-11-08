@@ -11,6 +11,10 @@ app.get('/listAll', async (req, res) => {
     //res.header("200");
     res.write("<h1>Test wyswietlania listy rekordow</h1>");
     const client = await db.connect();
+    let list = await db.getAllListings(client);
+    list = list.toString();
+    res.write(list);
+    db.close(client);
     res.end();
 })
 

@@ -15,4 +15,16 @@ async function connect() {
         }
 }
 
-module.exports = {connect}
+async function getAllListings(client) {
+    const collection = await client.db('sample_airbnb').collection('listingsAndReviews');
+    let list = collection.find().toArray();
+    return list;
+}
+
+function close(client) {
+    client.close();
+    console.log("Successfully disconnected from MongoDB");
+}
+
+
+module.exports = {connect, getAllListings, close}
