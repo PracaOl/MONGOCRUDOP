@@ -1,0 +1,14 @@
+{
+  "name": "mongocrud",
+  "version": "1.0.0",
+  "description": "Simple crud",
+  "main": "index.js",
+  "scripts": {
+    "test": "nodemon index.js"
+  },
+  "author": "OP 5Hp",
+  "license": "ISC",
+  "dependencies": {
+    "nodemon": "^3.0.1"
+  }
+}
