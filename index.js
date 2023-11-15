@@ -1,6 +1,8 @@
 //test
 const express = require('express');
+const bodyParser = require('body-parser');
 const app = express();
+app.use(bodyParser.urlencoded({ extended: true }));
 const db = require('./db');
 
 app.get('/', async (req, res) => {
@@ -23,6 +25,15 @@ app.get('/listAll', async (req, res) => {
     res.write("</table>");
     db.close(client);
     res.end();
-})
+});
+//POST
+app.post('/search', async (req, res) => {
+    //console.log(req.body);
+    let criteria = req.body;
+    const client = await db.connect();
+    let list = await db.get(client, criteria);
+    console.log(list);
+    res.sendStatus(200);
+});
 
 app.listen(8000);
