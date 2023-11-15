@@ -28,6 +28,18 @@ async function get(client, criteria) {
     return list;
 }
 
+async function add(client, data) {
+    const collection = await client.db('sample_airbnb').collection('listingsAndReviews');
+    collection.insertOne(data, (error, response) => {
+        if(error) {
+            console.log("Error podczas dodawania rekordu :/");
+            return false;
+        } else {
+            return true;
+        }
+    });
+}
+
 function close(client) {
     client.close();
     console.log("Successfully disconnected from MongoDB");
